@@ -10,7 +10,7 @@ class SignUp extends Component {
         <h3 className="text-center text-primary">Register</h3>
         <Jumbotron>
           <Formik
-            initialValues={{ email: "", userName:'',password1: "",password2:'' }}
+            initialValues={{ email: "", userName:'',password: "",rePassword:'' }}
             validate={values => {
               let errors = {};
               
@@ -20,15 +20,15 @@ class SignUp extends Component {
                 !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
               ) {
                 errors.email = "Invalid email address";
-              } else if (!values.password1) {
-                errors.password1 = "Please type in your password";
+              } else if (!values.password) {
+                errors.password = "Please type in your password";
                 
                 console.log(errors);
-              }else if(!values.password2){
-                errors.password2 = "Please type in your password";
+              }else if(!values.rePassword){
+                errors.rePassword = "Please type in your password";
                 console.log(errors);
-              } else if (values.password1!==values.password2) {
-                errors.password2 = "2 password is not the same";
+              } else if (values.password!==values.rePassword) {
+                errors.rePassword = "2 password is not the same";
                 console.log(errors);
               }
               return errors;
@@ -64,27 +64,27 @@ class SignUp extends Component {
 
                 <Input
                   type="password"
-                  name="password1"
+                  name="password"
                   placeholder="Password"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.password1}
+                  value={values.password}
                 />
                 <p className="text-danger">
                  
-                  {errors.password1 && touched.password1 && errors.password1}
+                  {errors.password && touched.password && errors.password}
                 </p>
                 <Input
                   type="password"
-                  name="password2"
+                  name="rePassword"
                   placeholder="Re-type Password"
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.password2}
+                  value={values.rePassword}
                 />
                 <p className="text-danger">
                  
-                  {errors.password2 && touched.password2 && errors.password2}
+                  {errors.rePassword && touched.rePassword && errors.rePassword}
                 </p>
 
                 <Button block type="submit" disabled={isSubmitting}>
