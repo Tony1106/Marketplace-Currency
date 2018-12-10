@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Container, Jumbotron, Input, Button } from "reactstrap";
-
+import {connect} from 'react-redux'
+import * as A from '../../redux/user/Action'
 import { Formik } from "formik";
-export default class SignUp extends Component {
+class SignUp extends Component {
   render() {
     return (
       <Container>
@@ -36,6 +37,7 @@ export default class SignUp extends Component {
             }}
             onSubmit={(values, { setSubmitting }) => {
               console.log("values", values);
+              this.props.signUpWithEmailAndPassWord(values)
             }}
           >
             {({
@@ -96,3 +98,8 @@ export default class SignUp extends Component {
     );
   }
 }
+
+export default connect(
+  null,
+ {signUpWithEmailAndPassWord: A.signUpWithEmailAndPassword.request}
+)(SignUp)
