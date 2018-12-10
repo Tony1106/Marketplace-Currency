@@ -1,16 +1,22 @@
 import React, { Component } from 'react'
 import NavBar from './NavBar'
+import {connect} from 'react-redux'
 
-export default class Header extends Component {
+class Header extends Component {
   render() {
       console.log(this.props);
       
     return (
         <div>
-            <NavBar/>
+            <NavBar isLoggedIn={this.props.isLoggedIn}/>
         </div>
         
 
     )
   }
 }
+export default connect(
+    state => {
+        return {isLoggedIn: state.user.isLoggedIn}
+    }
+    )(Header)

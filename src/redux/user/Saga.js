@@ -4,20 +4,15 @@ import * as A from "./Action";
 
 import {reduxSagaFirebase} from '../../config/firebase/config'
 
-// const authProvider = new firebase.auth.GoogleAuthProvider();
-// const rsf = ReduxSagaFirebase;
-const firebaseAuthentication = data => {
-  console.log(data, "data in firebase");
-  return data;
-};
+
 export function* loginWithEmailAndPassword(action) {
   console.log("action success", action);
   try {
-    const user = yield call(reduxSagaFirebase.auth.createUserWithEmailAndPassword, action.payload.email, action.payload.password);
+    const user = yield call(reduxSagaFirebase.auth.signInWithEmailAndPassword, action.payload.email, action.payload.password);
     console.log(user);
     
-    yield call(firebaseAuthentication, action.payload);
-    yield put( A.loginWithEmailAndPassword.success());
+
+    yield put( A.loginWithEmailAndPassword.success(user));
 
   } catch (err) {
     yield put(A.loginWithEmailAndPassword.failure());
@@ -34,7 +29,7 @@ console.log(action, 'action sign up');
     // yield call(firebaseSignUpWithEmailAndPassword, action.payload);
     console.log(user, 'user');
     
-    yield put(A.signUpWithEmailAndPassword.success());
+    yield put(A.signUpWithEmailAndPassword.success(user));
   } catch (err) {
     yield put(A.signUpWithEmailAndPassword.failure(err));
   }

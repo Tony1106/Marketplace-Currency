@@ -78,6 +78,8 @@ class SignIn extends Component {
 }
 
 export default connect(
-  null,
+  (state) => {
+    return {userProfile: state.user}
+  },
   { loginWithEmailAndPassword: A.loginWithEmailAndPassword.request }
 )(SignIn);

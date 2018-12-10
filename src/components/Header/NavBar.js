@@ -7,19 +7,21 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Button
+  Button,
+  ButtonDropdown,
+  DropdownMenu,
+  DropdownItem,
+  DropdownToggle
 } from "reactstrap";
+import AvatarUser from "./Avatar";
 import history from "../../History/History";
 import { Link } from "react-router-dom";
 export default class NavBar extends React.Component {
   state = {
-    isOpen: false
+    isOpen: false,
+    dropdownOpen: false
   };
-  toggle() {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
-  }
+
   handleSignIn(e) {
     e.preventDefault();
     history.push("./signin");
@@ -28,14 +30,60 @@ export default class NavBar extends React.Component {
     e.preventDefault();
     history.push("./signup");
   }
+  toggleProfile() {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
+  }
+  toggleMenu() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
   render() {
+    console.log(this.props, "props");
+    const { isLogginedIn } = this.props;
+    let userNavBar;
+    if (!isLogginedIn) {
+      userNavBar = (
+        <div className= 'userProfile'>
+          
+          <ButtonDropdown
+            isOpen={this.state.dropdownOpen}
+            toggle={this.toggleProfile.bind(this)}
+          >
+            <DropdownToggle caret>Profile</DropdownToggle>
+            <DropdownMenu>
+              <DropdownItem>Profile</DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem>Setting</DropdownItem>
+              <DropdownItem divider />
+              <DropdownItem>Login Out</DropdownItem>
+            </DropdownMenu>
+          </ButtonDropdown>
+        </div>
+      );
+    } else {
+      userNavBar = (
+        <div>
+          <Button className="loginButton" onClick={this.handleSignIn}>
+            Login
+          </Button>
+          <Button className="registerButton" onClick={this.handleRegister}>
+            Register
+          </Button>
+        </div>
+      );
+    }
+
     return (
-      <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">Logo</NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
-            <Nav className="ml-auto" navbar>
+    
+        <Navbar color="light" light expand="md" id="navbar">
+          <NavbarBrand href="/" className="navbarBrand">Logo</NavbarBrand>
+          <NavbarToggler onClick={this.toggleMenu.bind(this)} className='toogleButton'/>
+          {!isLogginedIn?<AvatarUser/>:null}
+          <Collapse isOpen={this.state.isOpen} navbar >
+            <Nav className="ml-auto " navbar>
               <NavItem>
                 <NavLink tag={Link} to="/">
                   Home
@@ -57,17 +105,12 @@ export default class NavBar extends React.Component {
                   Contact
                 </NavLink>
               </NavItem>
-
-              <Button className="loginButton" onClick={this.handleSignIn}>
-                Login
-              </Button>
-              <Button className="registerButton" onClick={this.handleRegister}>
-                Register
-              </Button>
+              {userNavBar}
             </Nav>
           </Collapse>
+          
         </Navbar>
-      </div>
+    
     );
   }
 }
