@@ -1,0 +1,28 @@
+.button-group {
+    display: flex;
+    flex-direction: row;
+
+}
+.button {
+    height: 50px;
+    width: 50%;
+}
+button{
+    width: 100%;
+    border: solid 1px #dddddd;
+    outline: none;
+    cursor: pointer;
+}
+button:focus{
+    outline: none;
+}
+.active {
+    background: #58B7E6; 
+    border-color: #58B7E6;
+}
+button:hover{
+    background: #58B7E6;    
+}
+.title{
+    color: red;
+}

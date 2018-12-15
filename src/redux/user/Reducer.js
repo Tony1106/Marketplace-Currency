@@ -2,6 +2,7 @@ import { getType } from "typesafe-actions";
 import * as A from "./Action";
 const initState = {
   isLoggedIn: false,
+  isLoading: false,
   userProfile: {
     displayName: "",
     avatar: "",

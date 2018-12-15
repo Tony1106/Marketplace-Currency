@@ -19,9 +19,14 @@ import { Link } from "react-router-dom";
 export default class NavBar extends React.Component {
   state = {
     isOpen: false,
-    dropdownOpen: false
+    dropdownOpen: false,
+    isLogginedIn: false
   };
-
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isLogginedIn !== this.state.isLogginedIn) {
+      this.setState({ isLogginedIn: !this.state.isLogginedIn });
+    }
+  }
   handleSignIn(e) {
     e.preventDefault();
     history.push("./signin");
@@ -42,12 +47,13 @@ export default class NavBar extends React.Component {
   }
   render() {
     console.log(this.props, "props");
-    const { isLogginedIn } = this.props;
+    const { isLogginedIn } = this.state;
+    console.log(isLogginedIn, "isLogin");
+
     let userNavBar;
-    if (!isLogginedIn) {
+    if (isLogginedIn) {
       userNavBar = (
-        <div className= 'userProfile'>
-          
+        <div className="userProfile">
           <ButtonDropdown
             isOpen={this.state.dropdownOpen}
             toggle={this.toggleProfile.bind(this)}
@@ -77,40 +83,42 @@ export default class NavBar extends React.Component {
     }
 
     return (
-    
-        <Navbar color="light" light expand="md" id="navbar">
-          <NavbarBrand href="/" className="navbarBrand">Logo</NavbarBrand>
-          <NavbarToggler onClick={this.toggleMenu.bind(this)} className='toogleButton'/>
-          {!isLogginedIn?<AvatarUser/>:null}
-          <Collapse isOpen={this.state.isOpen} navbar >
-            <Nav className="ml-auto " navbar>
-              <NavItem>
-                <NavLink tag={Link} to="/">
-                  Home
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} to="/About">
-                  About
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} to="/BuyandSell">
-                  Buy & Sell
-                </NavLink>
-              </NavItem>
+      <Navbar color="light" light expand="md" id="navbar">
+        <NavbarBrand href="/" className="navbarBrand">
+          Logo
+        </NavbarBrand>
+        <NavbarToggler
+          onClick={this.toggleMenu.bind(this)}
+          className="toogleButton"
+        />
+        {isLogginedIn ? <AvatarUser /> : null}
+        <Collapse isOpen={this.state.isOpen} navbar>
+          <Nav className="ml-auto " navbar>
+            <NavItem>
+              <NavLink tag={Link} to="/">
+                Home
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={Link} to="/About">
+                About
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={Link} to="/BuyandSell">
+                Buy & Sell
+              </NavLink>
+            </NavItem>
 
-              <NavItem>
-                <NavLink tag={Link} to="/Contact">
-                  Contact
-                </NavLink>
-              </NavItem>
-              {userNavBar}
-            </Nav>
-          </Collapse>
-          
-        </Navbar>
-    
+            <NavItem>
+              <NavLink tag={Link} to="/Contact">
+                Contact
+              </NavLink>
+            </NavItem>
+            {userNavBar}
+          </Nav>
+        </Collapse>
+      </Navbar>
     );
   }
 }

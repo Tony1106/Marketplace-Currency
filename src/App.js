@@ -7,6 +7,8 @@ import Home from './screens/Home/Home.js'
 import SignIn from './screens/SignIn/SignIn.js'
 import SignUp from './screens/SignUp/SignUp.js'
 import BuyAndSell from './screens/BuyAndSell/BuyAndSell.js'
+import Dashboard from './screens/Dashboard/Dashboard.js'
+
 import Button from 'react-bootstrap/lib/Button';
 class App extends Component {
   render() {
@@ -20,7 +22,7 @@ class App extends Component {
 
           <Switch> 
 
-            <Route exact path='/' component = {Home}/>
+            <Route exact path='/' component = {Dashboard}/>
             <Route path='/signin' component = {SignIn}/>
             <Route path='/signup' component = {SignUp}/>
             <Route path='/BuyAndSell' component = {BuyAndSell}/>

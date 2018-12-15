@@ -3,13 +3,22 @@ import { Container, Jumbotron, Input, Button } from "reactstrap";
 import * as A from "../../redux/user/Action";
 import { connect } from "react-redux";
 import { Formik } from "formik";
-
+import Spinning from '../../components/Loading/Spinning'
 class SignIn extends Component {
+  state = {
+    isLoading: false
+  }
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.userProfile.isLoading !== this.state.isLoading) {
+      this.setState({isLoading: !this.state.isLoading})
+    }
+   }
   render() {
     console.log(this.props, 'prop');
-   
+  
     return (
       <Container>
+        {this.state.isLoading? <Spinning/>: null}
         <h3 className="text-center text-primary">Sign In</h3>
         <Jumbotron>
           <Formik
@@ -29,7 +38,8 @@ class SignIn extends Component {
             }}
             onSubmit={(values, { setSubmitting }) => {
               console.log("values", values);
-              this.props.loginWithEmailAndPassword(values)
+              this.props.loginWithEmailAndPassword(values);
+              this.setState({isLoading: true})
             }}
           >
             {({
@@ -79,7 +89,9 @@ class SignIn extends Component {
 
 export default connect(
   (state) => {
-    return {userProfile: state.user}
+    return {
+      userProfile: state.user,
+    }
   },
   { loginWithEmailAndPassword: A.loginWithEmailAndPassword.request }
 )(SignIn);
