@@ -2,13 +2,13 @@ import {  put, call, takeEvery, all } from "redux-saga/effects";
 import { getType } from "typesafe-actions";
 import * as A from "./Action";
 
-import {reduxSagaFirebase} from '../../config/firebase/config'
+import {rsf} from '../../config/firebase/config'
 
 
 export function* loginWithEmailAndPassword(action) {
   console.log("action success", action);
   try {
-    const user = yield call(reduxSagaFirebase.auth.signInWithEmailAndPassword, action.payload.email, action.payload.password);
+    const user = yield call(rsf.auth.signInWithEmailAndPassword, action.payload.email, action.payload.password);
     console.log(user);
     
 
@@ -25,7 +25,7 @@ export function* signUpWithEmailAndPassword(action) {
 console.log(action, 'action sign up');
 
   try {
-    const user = yield call(reduxSagaFirebase.auth.createUserWithEmailAndPassword, action.payload.email, action.payload.password);
+    const user = yield call(rsf.auth.createUserWithEmailAndPassword, action.payload.email, action.payload.password);
     // yield call(firebaseSignUpWithEmailAndPassword, action.payload);
     console.log(user, 'user');
     
