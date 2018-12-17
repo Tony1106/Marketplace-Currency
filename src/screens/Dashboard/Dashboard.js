@@ -14,7 +14,7 @@ import style from "./style.module.css";
 export default class Dashboard extends Component {
   state = {
     value: {},
-    isBuy: true
+    isBuy: false
   };
   render() {
     //   console.log(style.button-group);
