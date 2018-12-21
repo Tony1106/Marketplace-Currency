@@ -6,7 +6,7 @@ import Header from './components/Header/Header'
 import Home from './screens/Home/Home.js'
 import SignIn from './screens/SignIn/SignIn.js'
 import SignUp from './screens/SignUp/SignUp.js'
-import BuyAndSell from './screens/BuyAndSell/BuyAndSell.js'
+import MarketPlace from './screens/MarketPlace/MarketPlace.js'
 import Dashboard from './screens/Dashboard/Dashboard.js'
 
 import Button from 'react-bootstrap/lib/Button';
@@ -22,10 +22,12 @@ class App extends Component {
 
           <Switch> 
 
-            <Route exact path='/' component = {Dashboard}/>
+            <Route exact path='/' component = {Home}/>
+            <Route path='/DashBoard' component = {Dashboard}/>
+            <Route path='/MarketPlace' component = {MarketPlace}/>
             <Route path='/signin' component = {SignIn}/>
             <Route path='/signup' component = {SignUp}/>
-            <Route path='/BuyAndSell' component = {BuyAndSell}/>
+           
           </Switch>
   
         </div>

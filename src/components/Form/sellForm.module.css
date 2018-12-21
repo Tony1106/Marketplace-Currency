@@ -1,0 +1,113 @@
+.form {
+    margin-top: 20px;
+  
+}
+.initialNumber{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 120px;
+    margin: 30px 0;
+}
+.formWrap{
+    height: 100px;
+
+}
+.input{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.output{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.headline {
+    height: 30px;
+    background: #58B7E6;
+    color: black;
+    text-align: center;
+    /* padding: 0 10px; */
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.line{
+    height: 2px;
+    border: 1px solid #dddddd;
+    border-left: none;
+    border-right: none;
+    width: 80%;
+}
+.headline h5 {
+    line-height: normal;
+    font-size: 18px;
+    margin: 0;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.showRate{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+.showRate span{
+    font-size: 35px;
+    color: green;
+    padding-left: 5px;
+}
+.adWraper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+.adWraper div{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.adWraper label{
+    align-self: flex-start;
+}
+.adWraper input, .adWraper textarea {
+    width: 100%;
+}
+.warningText{
+    color: red;
+    margin: 0;
+    align-self: flex-start;
+}
+.buttonWrap{
+    margin: 20px auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.buttonSubmit{
+    min-width: 150px;
+    width: 40%;
+    background: #58B7E6;
+    color: white;
+    border: #58B7E6;
+    border-radius: 5px;
+}
+.buttonSubmit:active{
+    opacity: 0.8;
+    background-color: #58B7E6 !important;
+}
+.buttonSubmit:hover{
+    background: white;
+    border: 1px solid #58B7E6;
+    color: #58B7E6;
+}

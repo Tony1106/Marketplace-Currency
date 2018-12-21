@@ -9,13 +9,22 @@ import {
   FormGroup
 } from "reactstrap";
 import Sell from './Sell/Sell'
-import Buy from './Buy/Buy'
+import BuyForm from '../../components/Form/BuyForm'
+import SellForm from '../../components/Form/SellForm'
 import style from "./style.module.css";
-export default class Dashboard extends Component {
+import {connect} from 'react-redux'
+import * as A from '../../redux/money/Action'
+class Dashboard extends Component {
   state = {
     value: {},
-    isBuy: false
+    isBuy: true,
   };
+  handleChangeBuyForm(values){
+    this.props.handleDataFromBuyForm(values);
+  }
+  handleChangeSellForm(values){
+    this.props.handleDataFromSellForm(values);
+  }
   render() {
     //   console.log(style.button-group);
     console.log(this.props.match.params);
@@ -34,10 +43,16 @@ export default class Dashboard extends Component {
             </div>
           </div>
           <div className={style.detail}>
-            {this.state.isBuy? <Buy/> : <Sell/>}
+            {this.state.isBuy? <BuyForm onChange = {(values) => this.handleChangeBuyForm(values)}/> : <SellForm onChange={(values)=> this.handleChangeSellForm(values)}/>}
             </div>
         </div>
       </Container>
     );
   }
 }
+
+export default connect(
+  null,
+  {handleDataFromBuyForm: A.createAdvertisingBuyMoney.request,
+  handleDataFromSellForm: A.createAdvertisingSellMoney.request},
+)(Dashboard)

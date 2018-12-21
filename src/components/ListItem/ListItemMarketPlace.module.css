@@ -1,0 +1,19 @@
+.wrapItem{
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    height: 50px;
+    border: 1px solid #dddddd;
+}
+.wrapItem:hover {
+    text-decoration: none;
+}
+.wrapItem div{
+    margin-right: 10px;
+    text-decoration: none;
+}
+.wrapItem div:hover{
+
+    text-decoration: none;
+}
