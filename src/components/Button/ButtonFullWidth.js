@@ -1,9 +1,21 @@
 import React from "react";
 import button from '../../css/components/button'
-export default function ButtonFullWidth(props) {
+import styles from './Button.module.css'
+function ButtonFullWidth(props) {
   return (
     <div>
-      <button style={button.buttonFullWidth}>{props.name}</button>
+      <button className={styles.buttonFullWidth}>{props.name}</button>
     </div>
   );
+}
+
+function OfferButton(props) {
+  return (
+    <div>
+      <button className={styles.OfferButton}>{props.name}</button>
+    </div>
+  );
+}
+export {
+  ButtonFullWidth, OfferButton
 }

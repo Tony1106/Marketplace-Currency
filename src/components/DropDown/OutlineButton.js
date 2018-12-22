@@ -18,7 +18,7 @@ export default class OutlineButton extends React.Component {
     };
   }
 
-  toggle() {
+  toggle = () => {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
     });
