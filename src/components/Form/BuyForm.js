@@ -18,14 +18,15 @@ export default class BuyForm extends Component {
         <Formik
         initialValues={{
           amountMoney: 0,
-          currencyPaidBy: "AUD",
-          currencyWantToBuy: "VND",
+          currencySell: "AUD",
+          currencyBuy: "VND",
           title: "",
           liveRate:16000,
           description: "",
           location: "",
           minOffer: 0,
-          autoAcceptOffer: 0
+          autoAcceptOffer: 0,
+          type: 'Buy'
         }}
         validate={values => {
           let errors = {};
@@ -53,7 +54,8 @@ export default class BuyForm extends Component {
           console.log(errors);
           return errors;
         }}
-        onSubmit={(values, { setSubmitting }) => {
+        onSubmit={(values, { setSubmitting }, e) => {
+
           this.setState({ data: values });
           this.props.onChange(values);
 
@@ -86,8 +88,8 @@ export default class BuyForm extends Component {
                  
                   <Input
                     type="select"
-                    name="currencyPaidBy"
-                    value={values.currencyPaidBy}
+                    name="currencySell"
+                    value={values.currencySell}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   >
@@ -117,8 +119,8 @@ export default class BuyForm extends Component {
                   />
                   <Input
                     type="select"
-                    name="currencyWantToBuy"
-                    value={values.currencyWantToBuy}
+                    name="currencyBuy"
+                    value={values.currencyBuy}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     

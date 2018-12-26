@@ -11,7 +11,7 @@ export function* uploadDataSellMoney(action) {
 console.log(action, 'action Sell money');
 
   try {
-    yield call(rsf.firestore.addDocument, "SellMoney", action.payload)
+    yield call(rsf.firestore.addDocument, "ItemData", action.payload)
     yield put(A.createAdvertisingSellMoney.success())
   } catch (err) {
     yield put(A.createAdvertisingSellMoney.failure(err));
@@ -22,7 +22,7 @@ export function* uploadDataBuyMoney(action) {
   console.log(action, 'action Buy money');
   
     try {
-      yield call(rsf.firestore.addDocument, "BuyMoney", action.payload)
+      yield call(rsf.firestore.addDocument, "ItemData", action.payload)
       yield put(A.createAdvertisingBuyMoney.success())
     } catch (err) {
       yield put(A.createAdvertisingBuyMoney.failure(err));

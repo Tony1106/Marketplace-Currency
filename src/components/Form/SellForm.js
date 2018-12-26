@@ -17,14 +17,15 @@ export default class SellForm extends Component {
         <Formik
         initialValues={{
           amountMoney: 0,
-          currencyHave: "AUD",
-          currencyWant: "VND",
+          currencySell: "AUD",
+          currencyBuy: "VND",
           title: "",
           liveRate: 16000,
           description: "",
           location: "",
           minOffer: 0,
-          autoAcceptOffer: 0
+          autoAcceptOffer: 0,
+          type: 'Sell'
         }}
         validate={values => {
           let errors = {};
@@ -85,8 +86,8 @@ export default class SellForm extends Component {
                  
                   <Input
                     type="select"
-                    name="currencyHave"
-                    value={values.currencyHave}
+                    name="currencySell"
+                    value={values.currencySell}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   >
@@ -116,8 +117,8 @@ export default class SellForm extends Component {
                   />
                   <Input
                     type="select"
-                    name="currencyWant"
-                    value={values.currencyWant}
+                    name="currencyBuy"
+                    value={values.currencyBuy}
                     onChange={handleChange}
                     onBlur={handleBlur}
                     

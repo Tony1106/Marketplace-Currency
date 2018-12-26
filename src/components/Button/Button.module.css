@@ -4,5 +4,12 @@
     background: "#58B7E6";
 }
 .OfferButton{
-    background: blue
+    background: #58B7E4;
+    width: 100px;
+    height: 100%;
+    border: 1px solid #58B7E4;
+    margin: 10px 0;
+}
+.OfferButton:active {
+    border: 1px solid rgb(44, 64, 74);
 }

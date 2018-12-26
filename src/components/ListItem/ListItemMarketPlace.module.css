@@ -1,19 +1,70 @@
 .wrapItem{
     display: flex;
     flex-direction: row;
-    justify-content: start;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-wrap: wrap;
     align-items: center;
-    height: 50px;
+    min-height: 50px;
     border: 1px solid #dddddd;
+    margin-top: 5px;
+    padding: 10px 0 ;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 .wrapItem:hover {
     text-decoration: none;
 }
 .wrapItem div{
-    margin-right: 10px;
+    /* margin-right: 10px; */
     text-decoration: none;
 }
 .wrapItem div:hover{
 
     text-decoration: none;
+}
+.wrapShowValue{
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+}
+.showValue{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;    
+    flex-wrap: wrap;
+}
+.devider{
+    width: 1px;
+    height: 70%;
+    background: #dddddd;
+    margin: 0 5px;
+}
+.item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* @media(max-width: 800px){
+    .showValue{
+        width: 400px;
+        margin: 10px 0;
+    }
+    .buttonOffer{
+        margin: 10px 0;
+    }
+} */
+@media(max-width: 860px){
+    .showValue{
+        margin-top: 10px;
+    }
+    .item{
+        width: 25%;
+    }
+}
+@media(max-width: 650px){
+    .item{
+        width: 20%;
+    }
 }

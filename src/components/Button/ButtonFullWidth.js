@@ -1,6 +1,7 @@
 import React from "react";
 import button from '../../css/components/button'
 import styles from './Button.module.css'
+
 function ButtonFullWidth(props) {
   return (
     <div>
@@ -11,8 +12,8 @@ function ButtonFullWidth(props) {
 
 function OfferButton(props) {
   return (
-    <div>
-      <button className={styles.OfferButton}>{props.name}</button>
+    <div style={{height: '70%'}}>
+      <button className={styles.OfferButton} onClick={props.onCustomClick}>{props.name}</button>
     </div>
   );
 }

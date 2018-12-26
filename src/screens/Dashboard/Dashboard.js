@@ -15,18 +15,26 @@ import style from "./style.module.css";
 import {connect} from 'react-redux'
 import * as A from '../../redux/money/Action'
 class Dashboard extends Component {
+  constructor(props){
+    super(props)
+
+
+  }
   state = {
     value: {},
     isBuy: true,
   };
+
   handleChangeBuyForm(values){
+    values.userProfile = this.props.userProfile;
     this.props.handleDataFromBuyForm(values);
   }
   handleChangeSellForm(values){
+    values.userProfile = this.props.userProfile;
     this.props.handleDataFromSellForm(values);
   }
   render() {
-    //   console.log(style.button-group);
+      console.log(this.props.userProfile, 'userprofile');
     console.log(this.props.match.params);
     const isBuy = this.state.isBuy;
     return (
@@ -52,7 +60,7 @@ class Dashboard extends Component {
 }
 
 export default connect(
-  null,
+  (state) => ({userProfile: state.user.userProfile}),
   {handleDataFromBuyForm: A.createAdvertisingBuyMoney.request,
   handleDataFromSellForm: A.createAdvertisingSellMoney.request},
 )(Dashboard)

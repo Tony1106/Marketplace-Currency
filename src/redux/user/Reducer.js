@@ -4,7 +4,7 @@ const initState = {
   isLoggedIn: false,
   isLoading: false,
   userProfile: {
-    displayName: "",
+    displayName: "test",
     avatar: "",
     uid: "",
     email: "",

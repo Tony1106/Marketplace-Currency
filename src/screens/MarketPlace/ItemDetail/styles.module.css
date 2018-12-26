@@ -1,0 +1,23 @@
+.header {
+    background: #800000;
+    width: 100%;
+}
+.title{
+    font-size: 25px;
+    width: 100%;
+
+}
+table {
+    border-collapse: collapse;
+  }
+th, td {
+    border: 1px solid #999;
+    padding: 0.5rem;
+    text-align: left;
+}
+.head{
+    width: 40%;
+}
+.child{
+    /* width: 60%; */
+}

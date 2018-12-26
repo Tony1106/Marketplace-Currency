@@ -2,3 +2,59 @@
     width: 100px;
     text-align: center;
 }
+.container{
+    height: 100px;
+    width: 100%;
+    min-width: 305px;
+    background: green;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    border-radius: 5px;
+
+}
+.typeContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.typeContainer p{
+   margin: 0;
+   margin-left: 10px;
+}
+.icon{
+    height: 40px;
+    width: 40px;
+    background: white;  
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+.icon i {
+    line-height: 20px;
+}
+.icon p{
+    margin: 0;
+}
+.textContainer{
+    display: flex;
+    justify-content: left;
+  
+}
+.textContainer p{
+    margin-left: 15px;
+}
+.numberContainer{
+    margin-right: 20px;
+    font-size: 50px;
+}
+.iconExchange{
+    /* margin-left: 10px; */
+}
