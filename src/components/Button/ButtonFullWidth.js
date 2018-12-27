@@ -5,11 +5,17 @@ import styles from './Button.module.css'
 function ButtonFullWidth(props) {
   return (
     <div>
-      <button className={styles.buttonFullWidth}>{props.name}</button>
+      <button onClick={props.onCustomClick} className={styles.buttonFullWidth}>{props.name}</button>
     </div>
   );
 }
-
+function ButtonNormalSize(props) {
+  return (
+    <div>
+      <button onClick={props.onCustomClick} className={styles.buttonNormalSize}>{props.name}</button>
+    </div>
+  );
+}
 function OfferButton(props) {
   return (
     <div style={{height: '70%'}}>
@@ -18,5 +24,5 @@ function OfferButton(props) {
   );
 }
 export {
-  ButtonFullWidth, OfferButton
+  ButtonFullWidth, OfferButton,ButtonNormalSize
 }

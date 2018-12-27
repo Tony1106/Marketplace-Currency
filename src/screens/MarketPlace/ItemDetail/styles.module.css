@@ -1,3 +1,6 @@
+.container {
+    width: 60%;
+}
 .header {
     background: #800000;
     width: 100%;
@@ -12,12 +15,34 @@ table {
   }
 th, td {
     border: 1px solid #999;
-    padding: 0.5rem;
+    padding: 5px;
     text-align: left;
+}
+td{
+    height: 30px;
 }
 .head{
     width: 40%;
 }
 .child{
     /* width: 60%; */
+}
+.formContainer{
+    display: flex;
+    flex-direction: row;
+}
+.formContainer button{
+    
+}
+
+@media(max-width: 950px) {
+    .container {
+        width: 90%;
+    }
+    .formContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }

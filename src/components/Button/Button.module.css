@@ -1,7 +1,7 @@
 .buttonFullWidth {
-    width: "100%";
-    color: "black";
-    background: "#58B7E6";
+    width: 100%;
+    color: black;
+    background: #58B7E6;
 }
 .OfferButton{
     background: #58B7E4;
@@ -12,4 +12,18 @@
 }
 .OfferButton:active {
     border: 1px solid rgb(44, 64, 74);
+}
+.buttonNormalSize{
+    width: auto;
+    padding: 5px 10px;
+    border: 1px solid #58B7E4;
+    border-radius: 8px;
+    color: black;
+    background: #58B7E6;
+}
+.buttonNormalSize:hover{
+    border: 1px solid #58B7E4;
+    background: white;
+    color: #58B7E4;
+    font-weight: 700;
 }

@@ -4,9 +4,14 @@ import MAvatar from "../../components/Avatar";
 import { OfferButton } from "../../components/Button/ButtonFullWidth";
 import { SellText } from "../../components/TextTypo";
 import ShowValue from "../../components/ShowValue";
-
+import {withRouter} from 'react-router-dom'
 import RatingDiabled from "../../components/Rating/RatingDisabled";
-export default class ListItemMarketPlaceSell extends Component {
+ class ListItemMarketPlaceSell extends Component {
+  handleClick(){
+    const id = this.props.id;
+    this.props.history.push(`/item/${id}`);
+    
+  }
   render() {
     const { itemData } = this.props;
     const {
@@ -51,8 +56,9 @@ export default class ListItemMarketPlaceSell extends Component {
             <ShowValue data ={{currencyBuy, autoAcceptOffer, currencySell,location,type, amountMoney}} />
           </div>
         </div>
-        <OfferButton name="Offer" className={styles.buttonOffer} />
+        <OfferButton name="Offer" className={styles.buttonOffer} onCustomClick={this.handleClick.bind(this)}/>
       </div>
     );
   }
 }
+export default withRouter(ListItemMarketPlaceSell)

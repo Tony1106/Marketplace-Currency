@@ -37,9 +37,9 @@ class MarketPlace extends Component {
        let data = itemData[key];
       let component;
       if(data.type =='Buy'){
-        component = <ListItemMarketPlaceBuy itemData= {data} key={key} />;
+        component = <ListItemMarketPlaceBuy itemData= {data} key={key} id ={key}/>;
       } else if (data.type =='Sell') {
-        component = <ListItemMarketPlaceSell itemData= {data} key={key} />
+        component = <ListItemMarketPlaceSell itemData= {data} key={key} id ={key} />
       }
         listItem = [...listItem, component];
        }

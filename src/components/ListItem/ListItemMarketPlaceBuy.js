@@ -9,9 +9,8 @@ import {withRouter} from 'react-router-dom'
 import RatingDiabled from "../Rating/RatingDisabled";
 class ListItemMarketPlaceBuy extends Component {
   handleClick(){
-    const id = this.props.itemData.id;
-    this.props.history.push(`/detail/${id}`);
-    console.log('click');
+    const id = this.props.id;
+    this.props.history.push(`/item/${id}`);
     
   }
   render() {
