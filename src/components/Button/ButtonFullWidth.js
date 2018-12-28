@@ -25,7 +25,7 @@ function OfferButton(props) {
 }
 function SemanticButton(props) {
   return (
-    <Button style={{margin: '20px 0'}} icon labelPosition='left' onClick={props.onCustomClick} color='violet'>
+    <Button style={{margin: '20px 0'}} icon labelPosition='left' onClick={props.onCustomClick} color='violet' disabled={props.disabled}>
       <Icon name='cart arrow down' />
       {props.name}
     </Button>

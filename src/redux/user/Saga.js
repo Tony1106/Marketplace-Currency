@@ -2,6 +2,7 @@ import {  put, call, takeEvery, all } from "redux-saga/effects";
 import { getType } from "typesafe-actions";
 import * as A from "./Action";
 import firebase from 'firebase'
+
 import {rsf} from '../../config/firebase/config'
 
 
@@ -38,6 +39,14 @@ console.log(action, 'action sign up');
     yield put(A.signUpWithEmailAndPassword.failure(err));
   }
 }
+export function* logOut(action){
+  try{
+    const data = yield call(rsf.auth.signOut);
+    yield put(A.logOut.success(data))
+  } catch(err){
+
+  }
+}
 
 export default function* userSaga() {
   console.log("hello Saga");
@@ -49,6 +58,10 @@ yield all([
   yield takeEvery(
     getType(A.signUpWithEmailAndPassword.request),
     signUpWithEmailAndPassword
-  )
+  ),
+  yield takeEvery(
+    getType(A.logOut.request),
+    logOut
+  ),
 ])
 }

@@ -14,7 +14,8 @@ class SignIn extends Component {
     }
    }
   render() {
-    console.log(this.props, 'prop');
+
+
   
     return (
       <Container>
@@ -22,7 +23,7 @@ class SignIn extends Component {
         <h3 className="text-center text-primary">Sign In</h3>
         <Jumbotron>
           <Formik
-            initialValues={{ email: "", password: "" }}
+            initialValues={{ email: "", password: "", avatar: ''  }}
             validate={values => {
               let errors = {};
               if (!values.email) {

@@ -19,7 +19,8 @@ import { SemanticButton } from "../../../components/Button/ButtonFullWidth";
    offerRate: 0,
    messageToSellerOrBuyer: '',
   isLoading: false,
-  isOpenPopup: false
+  isOpenPopup: false,
+  isSubmit: false
   };
   componentDidMount() {
     this.getItemData();
@@ -33,7 +34,8 @@ console.log('change');
       
       this.setState({
         isLoading: false,
-        isOpenPopup: true
+        isOpenPopup: true,
+    
       })
     }
   }
@@ -69,7 +71,9 @@ console.log('change');
       messageToSellerOrBuyer,
       itemID
     };
-    this.setState({isLoading: !this.state.isLoading})
+    this.setState({
+      isLoading: !this.state.isLoading,
+      isSubmit: true})
   this.props.postOfferToDatabase(offerData);
 
     
@@ -99,7 +103,7 @@ console.log('change');
       type,
       userProfile
     } = this.state.itemData;
-
+let buttonType = this.state.isSubmit? 'disabled':null
 
     return (
       <div>
@@ -181,6 +185,7 @@ console.log('change');
               
               <SemanticButton
                 name="Submit you offer"
+                disabled={this.state.isSubmit}
                 onCustomClick={this.handleSubmit.bind(this)}
               />
               {/* <button>Submit you offer</button> */}

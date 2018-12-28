@@ -20,17 +20,32 @@ export default class NavBar extends React.Component {
   state = {
     isOpen: false,
     dropdownOpen: false,
-    isLogginedIn: false
+    // isLogginedIn: true
   };
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isLogginedIn !== this.state.isLogginedIn) {
-      this.setState({ isLogginedIn: !this.state.isLogginedIn });
-    }
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   console.log(nextProps.isLogginedIn, 'is login in props');
+    
+  //   if (nextProps.isLogginedIn !== this.state.isLogginedIn) {
+  //     this.setState({ isLogginedIn: nextProps.isLogginedIn  });
+  //   }
+  // }
+// shouldComponentUpdate(nextProps){
+//     return nextProps.isLogginedIn !== this.state.isLogginedIn;
+// }
+
+// componentDidUpdate(prevProps){
+//   if(prevProps.isLogginedIn !== this.props.isLogginedIn){
+//     this.setState({ isLogginedIn: !this.state.isLogginedIn });
+// }
+    
+// }
+
   handleSignIn(e) {
     e.preventDefault();
     history.push("./signin");
   }
+ 
+ 
   handleRegister(e) {
     e.preventDefault();
     history.push("./signup");
@@ -46,9 +61,8 @@ export default class NavBar extends React.Component {
     });
   }
   render() {
-    console.log(this.props, "props");
-    const { isLogginedIn } = this.state;
-    console.log(isLogginedIn, "isLogin");
+    const isLogginedIn  = this.props.isLoggedIn;
+
 
     let userNavBar;
     if (isLogginedIn) {
@@ -64,7 +78,7 @@ export default class NavBar extends React.Component {
               <DropdownItem divider />
               <DropdownItem>Setting</DropdownItem>
               <DropdownItem divider />
-              <DropdownItem>Login Out</DropdownItem>
+              <DropdownItem onClick={this.props.logOut}>Login Out</DropdownItem>
             </DropdownMenu>
           </ButtonDropdown>
         </div>
