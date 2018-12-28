@@ -1,7 +1,7 @@
 import { getType } from "typesafe-actions";
 import * as A from "./Action";
 const initState = {
-  // isLoading: false,
+  isLoading: false,
   // amountMoney: 0,
   // autoAcceptOffer: 0,
   // currencyPaidBy: '',
@@ -18,13 +18,28 @@ const ItemData = (state = initState, action) => {
     
   switch (action.type) {
     case getType(A.getItemDataFromFirebase.success):
-    console.log('succes get data from database', action);
+
     const itemData = action.payload;
       return {
         ...state,
         itemData
       };
-  
+      // case getType(A.postOfferToDatabase.request):
+      // console.log('request data');
+      
+      // return {
+     
+      //   ...state,
+      //   isLoading: true
+      // }
+    case getType(A.postOfferToDatabase.success):
+    console.log(action.payload, 'action of post');
+    
+      return {
+        ...state,
+        isLoading: action.payload,
+
+      }
     default:
       return state;
   }

@@ -1,9 +1,16 @@
 .container {
     width: 60%;
+    /* position: relative; */
 }
 .header {
-    background: #800000;
-    width: 100%;
+    background: #f7931a;
+    color: white;
+    /* border: 2px solid #f7931a; */
+    /* box-shadow: 10px 5px 5px #f7931a; */
+}
+.stepContainer{
+    width: 80%;
+    margin: 20px auto;
 }
 .title{
     font-size: 25px;
@@ -29,20 +36,23 @@ td{
 }
 .formContainer{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 .formContainer button{
-    
+
 }
 
 @media(max-width: 950px) {
     .container {
         width: 90%;
     }
-    .formContainer{
+    .stepContainer{
+        width: 90%;
+    }
+    /* .formContainer{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-    }
+    } */
 }

@@ -1,29 +1,54 @@
 import React, { Component } from "react";
 import { Table, Container } from "reactstrap";
+import * as A from '../../../redux/ItemData/Action'
 import styles from "./styles.module.css";
-import { rsf } from "../../../config/firebase/config";
+import {connect} from 'react-redux'
+import { Rating } from 'semantic-ui-react'
 import firebase from "firebase";
-import { ButtonNormalSize } from "../../../components/Button/ButtonFullWidth";
-export default class ItemDetail extends Component {
+import Popup from '../../../components/Popup/Popup'
+import Spinning from '../../../components/Loading/Spinning'
+import StepForDetailPage from '../../../components/Step/StepForDetailPage'
+import { SemanticButton } from "../../../components/Button/ButtonFullWidth";
+ class ItemDetail extends Component {
   state = {
     itemData: {
       userProfile: {
         displayName: ""
       }
-    }
+    },
+   offerRate: 0,
+   messageToSellerOrBuyer: '',
+  isLoading: false,
+  isOpenPopup: false
   };
   componentDidMount() {
     this.getItemData();
   }
+  componentWillReceiveProps(nextProps){
+
+    
+    if(nextProps.isLoading.isLoading!= this.state.isLoading){
+console.log('change');
+
+      
+      this.setState({
+        isLoading: false,
+        isOpenPopup: true
+      })
+    }
+  }
   async getItemData() {
+    this.setState({isLoading: true})
     let db = firebase.firestore();
     let docRef = db.collection("ItemData").doc(this.props.match.params.id);
-    //  const itemData =  rsf.firestore.getDocument(`ItemData/${this.props.match.params.id}`);
+
     docRef
       .get()
       .then(doc => {
         if (doc.exists) {
-          this.setState({ itemData: doc.data() });
+          this.setState({ 
+            itemData: doc.data(),
+            isLoading:false });
         } else {
           // doc.data() will be undefined in this case
           console.log("No such document!");
@@ -33,10 +58,32 @@ export default class ItemDetail extends Component {
         console.log("Error getting document:", error);
       });
   }
-  handleClick = (e)=> {
+  handleSubmit(e) {
+   
     e.preventDefault();
-    console.log('click');
+
+    const itemID = this.props.match.params.id;
+    const {offerRate,messageToSellerOrBuyer } = this.state;
+    const offerData = {
+      offerRate,
+      messageToSellerOrBuyer,
+      itemID
+    };
+    this.setState({isLoading: !this.state.isLoading})
+  this.props.postOfferToDatabase(offerData);
+
     
+  
+ 
+  }
+  handleChange = (e) => {
+    const change = e.target.value;
+    console.log('hehe', change);
+    this.setState({ [e.target.name]: e.target.value})
+    
+  }
+  handleClosePopup = () =>{
+    this.setState({isOpenPopup:false})
   }
   render() {
     const {
@@ -52,11 +99,20 @@ export default class ItemDetail extends Component {
       type,
       userProfile
     } = this.state.itemData;
-    console.log(userProfile.displayName);
+
 
     return (
       <div>
+        <div className={styles.stepContainer}> <StepForDetailPage/></div>
+         
         <Container className={styles.container}>
+        {this.state.isOpenPopup? 
+        <Popup 
+        closePopup = {this.handleClosePopup} 
+        itemData= {this.state.itemData}
+        offerRate = {this.state.offerRate}
+        /> : null}
+        {this.state.isLoading? <Spinning/>: null}
           <Table>
             <thead>
               <tr>
@@ -72,7 +128,9 @@ export default class ItemDetail extends Component {
                 </th>
                 <td className={styles.child}>
                   {" "}
-                  {userProfile.displayName} + rating
+                  {userProfile.displayName} 
+                  <div style={{marginLeft: '20px', float: 'right'}}><Rating  icon='star' defaultRating={3} maxRating={5} disabled/></div>
+                  
                 </td>
               </tr>
               <tr>
@@ -91,7 +149,7 @@ export default class ItemDetail extends Component {
               </tr>
               <tr>
                 <th scope="row">Accept Rate</th>
-                <td>{autoAcceptOffer}</td>
+                <td>1 {currencySell} = {autoAcceptOffer} {currencyBuy}</td>
               </tr>
               <tr>
                 <th scope="row">Amount of Money</th>
@@ -110,16 +168,20 @@ export default class ItemDetail extends Component {
           </Table>
 
           <div>
-            <form className={styles.formContainer}>
-              <div>
+            <form className={styles.formContainer} onSubmit={this.handleSubmit.bind(this)}>
+              
                 <label htmlFor="offer-ItemDetail">
                   Please input your offer
                 </label>
-                <input type="number" name="offer" id="offer-ItemDetail" />
-              </div>
-              <ButtonNormalSize
+                <input type="number" name="offerRate" id="offer-ItemDetail" value={this.state.offerRate} onChange= {this.handleChange}/>
+                <label htmlFor="offer-Message">
+                  Write a message to Seller/Buyer(optional)
+                </label>
+                <textarea type="textarea" name="messageToSellerOrBuyer" id="offer-Message" value= {this.state.messageToSellerOrBuyer} onChange= {this.handleChange}> </textarea>
+              
+              <SemanticButton
                 name="Submit you offer"
-                onCustomClick={this.handleClick}
+                onCustomClick={this.handleSubmit.bind(this)}
               />
               {/* <button>Submit you offer</button> */}
             </form>
@@ -129,3 +191,11 @@ export default class ItemDetail extends Component {
     );
   }
 }
+export default connect(
+  (state)=> {
+    return {
+      isLoading: state.ItemData
+    }
+  },
+  {postOfferToDatabase: A.postOfferToDatabase.request}
+)(ItemDetail)

@@ -13,8 +13,8 @@ const initState = {
 };
 
 const user = (state = initState, action) => {
-  console.log(action, "action");
-  console.log(getType(A.loginWithEmailAndPassword.success), "get action");
+
+
   const userData = action.payload ? action.payload.user : null;
   const userProfile = userData
     ? {
@@ -25,7 +25,7 @@ const user = (state = initState, action) => {
         phoneNumber: userData.phoneNumber
       }
     : null;
-    console.log(userProfile, 'userProfile');
+
     
   switch (action.type) {
     case getType(A.loginWithEmailAndPassword.success):

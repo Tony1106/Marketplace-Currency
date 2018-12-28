@@ -1,7 +1,7 @@
 import React from "react";
 import button from '../../css/components/button'
 import styles from './Button.module.css'
-
+import {Button, Icon} from 'semantic-ui-react'
 function ButtonFullWidth(props) {
   return (
     <div>
@@ -23,6 +23,15 @@ function OfferButton(props) {
     </div>
   );
 }
-export {
-  ButtonFullWidth, OfferButton,ButtonNormalSize
+function SemanticButton(props) {
+  return (
+    <Button style={{margin: '20px 0'}} icon labelPosition='left' onClick={props.onCustomClick} color='violet'>
+      <Icon name='cart arrow down' />
+      {props.name}
+    </Button>
+  );
 }
+export {
+  ButtonFullWidth, OfferButton,ButtonNormalSize,SemanticButton
+}
+
