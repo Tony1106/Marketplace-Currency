@@ -2,9 +2,15 @@
 
 import React from 'react'
 import Avatar from '@material-ui/core/Avatar';
-export default function AvatarUser() {
+import {Image} from 'semantic-ui-react'
+
+export default function AvatarUser({avatar}) {
+  const avatarURI = avatar ? avatar: require('../../asset/img/default-avatar.png')
   return (
-      <div className="float-left avatar"><Avatar src="https://pickaface.net/gallery/avatar/kevin_a_davis5333326eb0091.png"/></div>
+      <div className="float-left avatar">
+      {/* <Avatar src={avatarURI}/> */}
+      <Image avatar src={avatarURI} />
+      </div>
       
   )
 }

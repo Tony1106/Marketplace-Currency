@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Container, Jumbotron, Input, Button } from "reactstrap";
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import * as A from '../../redux/user/Action'
 import { Formik } from "formik";
 import Spinning from '../../components/Loading/Spinning'
@@ -8,12 +10,19 @@ class SignUp extends Component {
   state = {
     isLoading: false
   }
+
+     
   componentWillReceiveProps(nextProps) {
     if(nextProps.userProfile.isLoading !== this.state.isLoading) {
       this.setState({isLoading: !this.state.isLoading})
     }
    }
   render() {
+    if(this.props.userProfile.isLoggedIn) {
+      return <Redirect to='/marketplace'/>
+    } else {
+
+    
     return (
       <Container>
         {this.state.isLoading? <Spinning/>: null}
@@ -106,15 +115,15 @@ class SignUp extends Component {
           </Formik>
         </Jumbotron>
       </Container>
-    );
+    )};
   }
 }
 
-export default connect(
+export default withRouter(connect(
   (state) => {
     return {
       userProfile: state.user,
     }
   },
  {signUpWithEmailAndPassWord: A.signUpWithEmailAndPassword.request}
-)(SignUp)
+)(SignUp))

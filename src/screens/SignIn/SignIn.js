@@ -3,6 +3,7 @@ import { Container, Jumbotron, Input, Button } from "reactstrap";
 import * as A from "../../redux/user/Action";
 import { connect } from "react-redux";
 import { Formik } from "formik";
+import { Redirect } from 'react-router'
 import Spinning from '../../components/Loading/Spinning'
 class SignIn extends Component {
   state = {
@@ -15,9 +16,10 @@ class SignIn extends Component {
    }
   render() {
 
-
-  
-    return (
+if(this.props.userProfile.isLoggedIn) {
+  return <Redirect to='/marketplace'/>
+} else  {
+  return (
       <Container>
         {this.state.isLoading? <Spinning/>: null}
         <h3 className="text-center text-primary">Sign In</h3>
@@ -84,7 +86,7 @@ class SignIn extends Component {
           </Formik>
         </Jumbotron>
       </Container>
-    );
+    )}
   }
 }
 

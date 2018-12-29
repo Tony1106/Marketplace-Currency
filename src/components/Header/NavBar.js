@@ -11,8 +11,10 @@ import {
   ButtonDropdown,
   DropdownMenu,
   DropdownItem,
-  DropdownToggle
+  DropdownToggle,
+  
 } from "reactstrap";
+import {Image} from 'semantic-ui-react'
 import AvatarUser from "./Avatar";
 import history from "../../History/History";
 import { Link } from "react-router-dom";
@@ -20,25 +22,8 @@ export default class NavBar extends React.Component {
   state = {
     isOpen: false,
     dropdownOpen: false,
-    // isLogginedIn: true
   };
-  // componentWillReceiveProps(nextProps) {
-  //   console.log(nextProps.isLogginedIn, 'is login in props');
-    
-  //   if (nextProps.isLogginedIn !== this.state.isLogginedIn) {
-  //     this.setState({ isLogginedIn: nextProps.isLogginedIn  });
-  //   }
-  // }
-// shouldComponentUpdate(nextProps){
-//     return nextProps.isLogginedIn !== this.state.isLogginedIn;
-// }
 
-// componentDidUpdate(prevProps){
-//   if(prevProps.isLogginedIn !== this.props.isLogginedIn){
-//     this.setState({ isLogginedIn: !this.state.isLogginedIn });
-// }
-    
-// }
 
   handleSignIn(e) {
     e.preventDefault();
@@ -62,11 +47,23 @@ export default class NavBar extends React.Component {
   }
   render() {
     const isLogginedIn  = this.props.isLoggedIn;
+    const { location } = this.props;
+    console.log(location, 'location');
+    const homeClassActive = location === '/marketplace'? true: false;
+    const aboutClassActive = location === '/About'? true: false;
+    const contactClassActive = location === '/Contact'? true: false;
+    const createAdsClassActive = location === '/dashboard'? true: false;
 
 
     let userNavBar;
     if (isLogginedIn) {
       userNavBar = (
+        <>
+        <NavItem>
+              <NavLink active= {createAdsClassActive} tag={Link} to="/dashboard">
+                Create Ads
+              </NavLink>
+            </NavItem>
         <div className="userProfile">
           <ButtonDropdown
             isOpen={this.state.dropdownOpen}
@@ -82,53 +79,52 @@ export default class NavBar extends React.Component {
             </DropdownMenu>
           </ButtonDropdown>
         </div>
+        </>
       );
     } else {
       userNavBar = (
-        <div>
+        <>
+        
           <Button className="loginButton" onClick={this.handleSignIn}>
             Login
           </Button>
           <Button className="registerButton" onClick={this.handleRegister}>
             Register
           </Button>
-        </div>
+        </>
       );
     }
 
     return (
       <Navbar color="light" light expand="md" id="navbar">
         <NavbarBrand href="/" className="navbarBrand">
-          Logo
+        <Image avatar src={require('../../asset/logo.png')}/> 
         </NavbarBrand>
         <NavbarToggler
           onClick={this.toggleMenu.bind(this)}
           className="toogleButton"
         />
-        {isLogginedIn ? <AvatarUser /> : null}
+        {isLogginedIn ? <AvatarUser avatar = {this.props.avatar}/> : null}
         <Collapse isOpen={this.state.isOpen} navbar>
-          <Nav className="ml-auto " navbar>
+          <Nav className="ml-auto " navbar tabs>
             <NavItem>
-              <NavLink tag={Link} to="/">
+              <NavLink  active={homeClassActive} tag={Link} to="/marketplace">
                 Home
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink tag={Link} to="/About">
+              <NavLink active = {aboutClassActive} tag={Link} to="/About">
                 About
               </NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink tag={Link} to="/BuyandSell">
-                Buy & Sell
-              </NavLink>
-            </NavItem>
+          
 
             <NavItem>
-              <NavLink tag={Link} to="/Contact">
+              <NavLink active={contactClassActive} tag={Link} to="/Contact">
                 Contact
               </NavLink>
             </NavItem>
+            
             {userNavBar}
           </Nav>
         </Collapse>
