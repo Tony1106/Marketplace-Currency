@@ -31,15 +31,10 @@ td{
 .head{
     width: 40%;
 }
-.child{
-    /* width: 60%; */
-}
+
 .formContainer{
     display: flex;
     flex-direction: column;
-}
-.formContainer button{
-
 }
 
 @media(max-width: 950px) {

@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./ShowValue.module.css";
 
 export default function ShowValue(props) {
-  console.log(props.data, 'data in show value');
   let {amountMoney,
     autoAcceptOffer,
     currencySell,

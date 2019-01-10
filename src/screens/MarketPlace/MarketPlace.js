@@ -5,6 +5,7 @@ import ListItemMarketPlaceBuy from '../../components/ListItem/ListItemMarketPlac
 import ListItemMarketPlaceSell from '../../components/ListItem/ListItemMarketPlaceSell'
 import Spinning from '../../components/Loading/Spinning'
 import {connect} from 'react-redux'
+import StepForDetailPage from '../../components/Step/StepForDetailPage'
 import * as A from '../../redux/ItemData/Action'
 class MarketPlace extends Component {
   state = {
@@ -49,7 +50,8 @@ class MarketPlace extends Component {
     
     return (
       <div>
-        Market Place banner add late
+        <div style={{margin: '20px 0'}}><StepForDetailPage /></div>
+        
         
         <Filter/>
         <div className={styles.wrapListItem}>

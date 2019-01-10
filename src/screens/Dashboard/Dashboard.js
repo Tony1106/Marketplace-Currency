@@ -8,7 +8,7 @@ import {
   Label,
   FormGroup
 } from "reactstrap";
-import Sell from './Sell/Sell'
+// import Sell from './Sell/Sell'
 import BuyForm from '../../components/Form/BuyForm'
 import SellForm from '../../components/Form/SellForm'
 import style from "./style.module.css";
@@ -23,6 +23,7 @@ class Dashboard extends Component {
   state = {
     value: {},
     isBuy: true,
+
   };
 
   handleChangeBuyForm(values){
@@ -41,6 +42,8 @@ class Dashboard extends Component {
       <Container>
         <div>
           <h3 className={style.title}>Welcome to Exchange Me</h3>
+          <h5>Today's Movers</h5>
+          
           <h5>Would you like to buy or sell?</h5>
           <div className={style["button-group"]}>
             <div className={`${style["button-sell"]}  ${style.button}`}>

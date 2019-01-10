@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import ListItemMarketPlace from '../../components/ListItem/ListItemMarketPlace'
+import React, { Component } from "react";
+import ListItemMarketPlace from "../../components/ListItem/ListItemMarketPlace";
 export default class ListItem extends Component {
-  render() {
+	render() {
     
-    return (
-      <div style={{padding: "0 20px"}}>
-        <ListItemMarketPlace/>
-      </div>
-    )
-  }
+		return (
+			<div style={{padding: "0 20px"}}>
+				<ListItemMarketPlace/>
+			</div>
+		);
+	}
 }

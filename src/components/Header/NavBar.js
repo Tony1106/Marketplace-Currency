@@ -14,6 +14,7 @@ import {
   DropdownToggle,
   
 } from "reactstrap";
+import styles from './NavBar.module.css'
 import {Image} from 'semantic-ui-react'
 import AvatarUser from "./Avatar";
 import history from "../../History/History";
@@ -49,7 +50,8 @@ export default class NavBar extends React.Component {
     const isLogginedIn  = this.props.isLoggedIn;
     const { location } = this.props;
     console.log(location, 'location');
-    const homeClassActive = location === '/marketplace'? true: false;
+    const homeClassActive = location === '/home'? true: false;
+    const marketPlaceClassActive = location === '/marketplace'? true: false;
     const aboutClassActive = location === '/About'? true: false;
     const contactClassActive = location === '/Contact'? true: false;
     const createAdsClassActive = location === '/dashboard'? true: false;
@@ -60,11 +62,11 @@ export default class NavBar extends React.Component {
       userNavBar = (
         <>
         <NavItem>
-              <NavLink active= {createAdsClassActive} tag={Link} to="/dashboard">
-                Create Ads
+              <NavLink className={`${styles.navItem} ${createAdsClassActive?styles.active:''}`} tag={Link} to="/dashboard">
+                Dashboard
               </NavLink>
             </NavItem>
-        <div className="userProfile">
+        {/* <div className="userProfile">
           <ButtonDropdown
             isOpen={this.state.dropdownOpen}
             toggle={this.toggleProfile.bind(this)}
@@ -78,7 +80,13 @@ export default class NavBar extends React.Component {
               <DropdownItem onClick={this.props.logOut}>Login Out</DropdownItem>
             </DropdownMenu>
           </ButtonDropdown>
-        </div>
+        </div> */}
+    
+            <NavItem>
+              <NavLink className={styles.navItem}  tag={Link} to="/dashboard" onClick={this.props.logOut}>
+                SignOut
+              </NavLink>
+            </NavItem>
         </>
       );
     } else {
@@ -96,7 +104,7 @@ export default class NavBar extends React.Component {
     }
 
     return (
-      <Navbar color="light" light expand="md" id="navbar">
+      <Navbar color="dark" dark expand="md" id="navbar">
         <NavbarBrand href="/" className="navbarBrand">
         <Image avatar src={require('../../asset/logo.png')}/> 
         </NavbarBrand>
@@ -106,21 +114,27 @@ export default class NavBar extends React.Component {
         />
         {isLogginedIn ? <AvatarUser avatar = {this.props.avatar}/> : null}
         <Collapse isOpen={this.state.isOpen} navbar>
-          <Nav className="ml-auto " navbar tabs>
-            <NavItem>
-              <NavLink  active={homeClassActive} tag={Link} to="/marketplace">
+          <Nav className="ml-auto " navbar pills>
+          {!isLogginedIn ? <NavItem>
+              <NavLink className={`${styles.navItem} ${homeClassActive?styles.active:''}`}  tag={Link} to="/home">
                 Home
+              </NavLink>
+            </NavItem> : null}
+            
+            <NavItem>
+              <NavLink className={`${styles.navItem} ${marketPlaceClassActive?styles.active:''}`} tag={Link} to="/marketplace">
+                MarketPlace
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink active = {aboutClassActive} tag={Link} to="/About">
+              <NavLink className={`${styles.navItem} ${aboutClassActive?styles.active:''}`} tag={Link} to="/About">
                 About
               </NavLink>
             </NavItem>
           
 
             <NavItem>
-              <NavLink active={contactClassActive} tag={Link} to="/Contact">
+              <NavLink className={`${styles.navItem} ${contactClassActive?styles.active:''}`} tag={Link} to="/Contact">
                 Contact
               </NavLink>
             </NavItem>

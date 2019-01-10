@@ -27,6 +27,7 @@ export default class OutlineButton extends React.Component {
     this.setState({
       name: e.target.value
     });
+    this.props.handleChoose(e.target.value);
   }
 
   render() {

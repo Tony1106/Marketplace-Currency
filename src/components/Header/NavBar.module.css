@@ -1,0 +1,7 @@
+.navItem {
+    color: white!important;
+    margin-right: 10px;
+}
+.active{
+    background: #00b5ad;
+}

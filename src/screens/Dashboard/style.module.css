@@ -17,12 +17,7 @@
     cursor: pointer;
    
 }
-.button-sell{
 
-}
-.button-buy{
-
-}
 button:focus{
     outline: none;
 }
